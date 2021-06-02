@@ -88,6 +88,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=LFOSBYSY
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for Demoboard\Design Rule Check - demoboard.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
