@@ -81,10 +81,12 @@ void StartDefaultTask(void *argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define LED0_Pin        GPIO_PIN_5
-#define LED0_GPIO_Port  GPIOA
-#define LED_ON          GPIO_PIN_SET
-#define LED_OFF          GPIO_PIN_RESET
+int  BSP_Init(void)
+{
+	int ret = 0;
+	ssd1306_128x64_spi_init(GPIO_PIN_12,-1,GPIO_PIN_14);//rst pin GPIOB12 D/C pin GPIOB14
+	return ret;
+}
 
 /* USER CODE END 0 */
 
@@ -123,7 +125,8 @@ int main(void)
   MX_CAN_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-
+  //BSP INIT
+  BSP_Init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -456,7 +459,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1|GPIO_PIN_12|GPIO_PIN_14, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_5;
@@ -465,8 +468,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PB1 */
-  GPIO_InitStruct.Pin = GPIO_PIN_1;
+  /*Configure GPIO pins : PB1 PB12 PB14 */
+  GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_12|GPIO_PIN_14;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
