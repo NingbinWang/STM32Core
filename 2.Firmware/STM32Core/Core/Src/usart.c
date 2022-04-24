@@ -271,7 +271,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 int fputc(int ch,FILE *f)
 {
-	HAL_UART_Transmit(&huart1,(uint8_t *)&ch,1,0xFFFF);
-	return ch;
+	HAL_UART_Transmit(&huart1,(unsigned char *)&ch,1,1000);
+	return 1;
 }
 /* USER CODE END 1 */
