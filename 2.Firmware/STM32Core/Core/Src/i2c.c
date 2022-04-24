@@ -21,7 +21,7 @@
 #include "i2c.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "mpu6050.h"
 /* USER CODE END 0 */
 
 I2C_HandleTypeDef hi2c1;
@@ -51,7 +51,7 @@ void MX_I2C1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN I2C1_Init 2 */
-
+   MPU6050_Init(&hi2c1);
   /* USER CODE END I2C1_Init 2 */
 
 }
