@@ -1,6 +1,6 @@
 #MicroXplorer Configuration settings - do not modify
 FREERTOS.IPParameters=Tasks01
-FREERTOS.Tasks01=defaultTask,24,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL
+FREERTOS.Tasks01=defaultTask,0,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL
 File.Version=6
 GPIO.groupedBy=Group By Peripherals
 KeepUserPlacement=false
@@ -27,7 +27,7 @@ Mcu.Pin14=PA14
 Mcu.Pin15=PB5
 Mcu.Pin16=PB6
 Mcu.Pin17=PB7
-Mcu.Pin18=VP_FREERTOS_VS_CMSIS_V2
+Mcu.Pin18=VP_FREERTOS_VS_CMSIS_V1
 Mcu.Pin19=VP_SYS_VS_Systick
 Mcu.Pin2=PA1
 Mcu.Pin3=PA2
@@ -152,8 +152,8 @@ USART2.IPParameters=VirtualMode
 USART2.VirtualMode=VM_ASYNC
 USART3.IPParameters=VirtualMode
 USART3.VirtualMode=VM_ASYNC
-VP_FREERTOS_VS_CMSIS_V2.Mode=CMSIS_V2
-VP_FREERTOS_VS_CMSIS_V2.Signal=FREERTOS_VS_CMSIS_V2
+VP_FREERTOS_VS_CMSIS_V1.Mode=CMSIS_V1
+VP_FREERTOS_VS_CMSIS_V1.Signal=FREERTOS_VS_CMSIS_V1
 VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=custom
