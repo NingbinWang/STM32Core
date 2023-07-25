@@ -25,8 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdio.h"
-#include "mpu6050.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,8 +47,7 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-osThreadId MainTaskHandle;
-osMessageQId MainQueueHandle;
+osThreadId defaultTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -99,19 +97,14 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
-  /* Create the queue(s) */
-  /* definition and creation of MainQueue */
-  osMessageQDef(MainQueue, 16, uint16_t);
-  MainQueueHandle = osMessageCreate(osMessageQ(MainQueue), NULL);
-
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* definition and creation of MainTask */
-  osThreadDef(MainTask, StartDefaultTask, osPriorityNormal, 0, 128);
-  MainTaskHandle = osThreadCreate(osThread(MainTask), NULL);
+  /* definition and creation of defaultTask */
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -121,7 +114,7 @@ void MX_FREERTOS_Init(void) {
 
 /* USER CODE BEGIN Header_StartDefaultTask */
 /**
-  * @brief  Function implementing the MainTask thread.
+  * @brief  Function implementing the defaultTask thread.
   * @param  argument: Not used
   * @retval None
   */
@@ -131,11 +124,9 @@ void StartDefaultTask(void const * argument)
   /* init code for USB_DEVICE */
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
-  MPU6050_t mpu;
   /* Infinite loop */
   for(;;)
   {
-    MPU6050_Read_All(&hi2c1,&mpu);
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
