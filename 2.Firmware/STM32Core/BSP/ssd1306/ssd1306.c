@@ -170,7 +170,7 @@ void ssd1306_Init(void) {
     ssd1306_SetDisplayOn(1); //--turn on SSD1306 panel
 
     // Clear screen
-    ssd1306_Fill(White);
+    ssd1306_Fill(Black);
     
     // Flush buffer to screen
     ssd1306_UpdateScreen();
